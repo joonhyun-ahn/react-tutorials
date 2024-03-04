@@ -44,7 +44,8 @@ export default function Root() {
               name="q"
               defaultValue={q}
               onChange={(e) => {
-                submit(e.currentTarget.form);
+                const isFirstSearch = q == null;
+                submit(e.currentTarget.form, { replace: !isFirstSearch });
               }}
             />
             <div id="search-spinner" aria-hidden hidden={!searching} />
@@ -67,6 +68,7 @@ export default function Root() {
                     ) : (
                       <i>No Name</i>
                     )}{' '}
+                    {contact.favorite && <span>★</span>}
                   </NavLink>
                 </li>
               ))}
